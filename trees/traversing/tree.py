@@ -26,7 +26,7 @@ class Tree:
 
         return traversal
 
-    def preorder_dfs(self):
+    def dfs_preorder(self):
         """Algorithm preorder
         1. Visit the root.
         2. Traverse the left subtree
@@ -55,7 +55,7 @@ class Tree:
 
         return traversal
 
-    def inorder_dfs(self):
+    def dfs_inorder(self):
         """Algorithm inorder
         1. Traverse the left subtree
         2. Visit the root
@@ -86,7 +86,7 @@ class Tree:
 
         return traversal
 
-    def postorder_dfs(self):
+    def dfs_postorder(self):
         """Algorithm postorder
         1. Traverse the left subtree
         2. Traverse the right subtree

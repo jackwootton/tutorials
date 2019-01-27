@@ -16,7 +16,7 @@ def main():
     a.set_children(b, c)
 
     t = tree.Tree(root=a)
-    preorder = t.preorder()
+    preorder = t.dfs_preorder()
     print(preorder)
 
 

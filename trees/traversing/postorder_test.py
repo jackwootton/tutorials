@@ -16,8 +16,8 @@ def main():
     a.set_children(b, c)
 
     t = tree.Tree(root=a)
-    inorder = t.inorder()
-    print(inorder)
+    postorder = t.dfs_postorder()
+    print(postorder)
 
 
 if __name__ == "__main__":
