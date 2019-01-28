@@ -8,6 +8,3 @@ class Node:
     def set_children(self, left_child=None, right_child=None):
         self.left_child = left_child
         self.right_child = right_child
-
-    def is_orphan(self):
-        return self.left_child is None and self.right_child is None
