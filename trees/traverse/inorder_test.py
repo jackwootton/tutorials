@@ -3,6 +3,17 @@ import tree
 
 
 def main():
+    """Tests inorder (DFS) algorithm on a binary tree.
+
+    Constructed binary tree is
+            A
+          /   \
+         B     C
+        /  \
+       D    E
+           / \
+          F   G
+    """
     a = node.Node('A')
     b = node.Node('B')
     c = node.Node('C')

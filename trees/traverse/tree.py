@@ -3,127 +3,113 @@ class Tree:
         self.root_node = root
 
     def bfs(self):
-        traversal = []
+        visited = []
         next_nodes = [self.root_node]
 
         while len(next_nodes):
-            current_node = next_nodes[-1]
+            current_node = next_nodes.pop(0)
 
-            # Visit the root
-            current_node.visited = True
-            traversal.append(current_node.value)
-            next_nodes.pop()
+            # Record the visit
+            visited.append(current_node.value)
 
-            # Traverse left subtree
-            lc = current_node.left_child
-            if lc and not lc.visited:
-                next_nodes.insert(0, lc)
+            # Traverse left subtree (later)
+            if current_node.left_child:
+                next_nodes.append(current_node.left_child)
 
-            # Traverse right subtree
-            rc = current_node.right_child
-            if rc and not rc.visited:
-                next_nodes.insert(0, rc)
+            # Traverse right subtree (a little later)
+            if current_node.right_child:
+                next_nodes.append(current_node.right_child)
 
-        return traversal
+        return visited
 
     def dfs_preorder(self):
-        """Algorithm preorder
-        1. Visit the root.
-        2. Traverse the left subtree
-        3. Traverse the right subtree
+        """Algorithm for preorder traversal
+        1. Visit the root node.
+        2. Traverse the left subtree.
+        3. Traverse the right subtree.
         """
-        traversal = []
+        visited = []
         next_nodes = [self.root_node]
 
         while len(next_nodes):
-            current_node = next_nodes[-1]
+            current_node = next_nodes.pop()
 
-            # Visit the root
-            current_node.visited = True
-            traversal.append(current_node.value)
-            next_nodes.pop()
+            # Record the visit
+            visited.append(current_node.value)
 
-            # Traverse right substree
-            rc = current_node.right_child
-            if rc and not rc.visited:
-                next_nodes.append(rc)
+            # Traverse right substree (very soon)
+            if current_node.right_child:
+                next_nodes.append(current_node.right_child)
 
-            # Traverse left subtree
-            lc = current_node.left_child
-            if lc and not lc.visited:
-                next_nodes.append(lc)
+            # Traverse left subtree (very soon)
+            if current_node.left_child:
+                next_nodes.append(current_node.left_child)
 
-        return traversal
+        return visited
 
     def dfs_preorder_rec(self):
-        return self.dfs_preorder_helper_(self.root_node)
+        return self.dfs_preorder_helper(self.root_node)
 
-    def dfs_preorder_helper_(self, current_node):
-        """Algorithm dfs_preorder_helper_(tree)
-        1. Visit the root.
-        2. Traverse the left subtree, i.e. dfs_preorder_helper_(left-subtree)
-        3. Traverse the right subtree, i.e. dfs_preorder_helper_(right-subtree)
-        """
+    def dfs_preorder_helper(self, current_node):
+        # recursive base case
         if current_node is None:
             return []
 
         # Visit the root
-        current_node.visited = True
-        traversal = [current_node.value]
+        visited = [current_node.value]
 
-        # Traverse left subtree
-        left_subtree = self.dfs_preorder_helper_(current_node.left_child)
-        traversal.extend(left_subtree)
+        # Traverse left subtree (progress toward base case)
+        left_subtree = self.dfs_preorder_helper(current_node.left_child)
+        visited.extend(left_subtree)
 
-        # Traverse right subtree
-        right_subtree = self.dfs_preorder_helper_(current_node.right_child)
-        traversal.extend(right_subtree)
+        # Traverse right subtree (progress toward base case)
+        right_subtree = self.dfs_preorder_helper(current_node.right_child)
+        visited.extend(right_subtree)
 
-        return traversal
+        return visited
 
     def dfs_inorder(self):
-        """Algorithm inorder
-        1. Traverse the left subtree
-        2. Visit the root
-        3. Traverse the right subtree
-        """
-        traversal = []
+        visited = []
         next_nodes = [self.root_node]
+        done = False
+        # Start at the root node
+        current_node = self.root_node
 
-        while len(next_nodes):
-            current_node = next_nodes[-1]
+        while not done:
+            if current_node:
+                # Navigate to the left-most node
+                next_nodes.append(current_node)
+                current_node = current_node.left_child
+            else:
+                done = len(next_nodes) < 1
+                if not done:
+                    # Visit the node
+                    current_node = next_nodes.pop()
+                    visited.append(current_node.value)
 
-            # Traverse left subtree
-            lc = current_node.left_child
-            if lc and not lc.visited:
-                next_nodes.append(lc)
-                continue
+                    # Traverse the right subtree
+                    current_node = current_node.right_child
 
-            # Visit the root
-            current_node.visited = True
-            traversal.append(current_node.value)
-            next_nodes.pop()
-
-            # Traverse the right subtree
-            rc = current_node.right_child
-            if rc and not rc.visited:
-                next_nodes.append(rc)
-                continue
-
-        return traversal
+        return visited
 
     def dfs_postorder(self):
-        """Algorithm postorder
-        1. Traverse the left subtree
-        2. Traverse the right subtree
-        3. Visit the root
-        """
-        traversal = []
+        visited = []
         next_nodes = [self.root_node]
+        done = False
+        # Start at the root node
+        current_node = self.root_node
 
-        while len(next_nodes):
-            current_node = next_nodes[-1]
+        while not done:
+            if current_node:
+                next_nodes.append(current_node)
+                current_node = current_node.left_child
 
+            else:
+                current_node = current_node.right_child
+                done = len(next_nodes) < 1
+
+                current_node = next_nodes.pop()
+                visited.append(current_node.value)
             # Traverse left subtree
             lc = current_node.left_child
             if lc and not lc.visited:
