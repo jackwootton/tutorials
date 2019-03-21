@@ -27,9 +27,8 @@ def main():
     a.set_children(b, c)
 
     t = tree.Tree(root=a)
-    preorder = t.dfs_preorder()
-    preorder_rec = t.dfs_preorder_rec()
-    print(preorder, preorder_rec)
+    preorder = t.dfs_preorder_recursive_traversal()
+    print(preorder)
 
 
 if __name__ == "__main__":

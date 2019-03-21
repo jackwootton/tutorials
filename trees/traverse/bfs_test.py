@@ -11,13 +11,25 @@ def main():
     f = node.Node('F')
     g = node.Node('G')
 
+    """
+             A
+           /   \
+          B     C
+         / \
+        D   E
+           / \
+          F   G
+    """
     e.set_children(f, g)
     b.set_children(d, e)
     a.set_children(b, c)
 
     t = tree.Tree(root=a)
-    bfs = t.bfs()
-    print(bfs)
+    traversal = t.bfs_traversal()
+    print(traversal)
+
+    path = t.bfs_path('F')
+    print(path)
 
 
 if __name__ == "__main__":

@@ -27,7 +27,9 @@ def main():
     a.set_children(b, c)
 
     t = tree.Tree(root=a)
-    inorder = t.dfs_inorder()
+    inorder = t.dfs_inorder_recursive_traversal()
+    print(inorder)
+    inorder = t.dfs_inorder_traversal()
     print(inorder)
 
 

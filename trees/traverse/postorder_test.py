@@ -27,7 +27,9 @@ def main():
     a.set_children(b, c)
 
     t = tree.Tree(root=a)
-    postorder = t.dfs_postorder()
+    postorder = t.dfs_postorder_rec_traversal()
+    print(postorder)
+    postorder = t.dfs_postorder_itr_traversal()
     print(postorder)
 
 
